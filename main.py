@@ -22,7 +22,6 @@ def main():
 
     ranked_sections = rank_sections(non_empty, persona, job)
 
-    # Deduplicate based on section title
     seen_titles = set()
     unique_ranked = []
     for section in ranked_sections:
@@ -31,10 +30,10 @@ def main():
             unique_ranked.append(section)
             seen_titles.add(title)
 
-    # ✅ Take top 5
+   
     top_sections = unique_ranked[:5]
 
-    # ✅ Summarization
+   
     print("[DEBUG] Running summarization...")
     summarizer = pipeline("summarization", model="sshleifer/distilbart-cnn-12-6")
     for r in top_sections:
@@ -49,7 +48,7 @@ def main():
         except Exception as e:
             r['summary'] = r['section_title']
 
-    # ✅ Prepare final output
+  
     output = {
         "metadata": {
             "input_documents": [doc["filename"] for doc in documents],
@@ -68,7 +67,7 @@ def main():
         ]
     }
 
-    # ✅ Write result to output
+  
     with open("output/result.json", "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
 
