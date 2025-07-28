@@ -96,7 +96,5 @@ output/result.json
 
 This repository is intended for educational/demo purposes for the Adobe Hackathon. Please do not use it for commercial applications without permission.
 
-```
-
 ---
 
