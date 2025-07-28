@@ -1,63 +1,101 @@
-
 # Adobe Hackathon 2025 – Round 1B  
 ### ✈️ Travel Planner: Connecting the Dots
 
-This repository contains the solution to **Round 1B** of Adobe India Hackathon 2025 – a travel planning assistant that intelligently scans PDFs and extracts the most relevant information based on a user persona and job-to-be-done.
-
-The challenge involved reading multiple guide PDFs and producing a summarized, ranked output tailored to a specific user scenario.
+This repository is the submission for **Round 1B** of the Adobe India Hackathon 2025.  
+It implements an intelligent **travel assistant** that processes PDF guides and generates personalized, ranked summaries for a given persona and task.
 
 ---
 
 ## 🧠 Problem Statement
 
-Given:
-- A set of PDF documents (e.g., travel guides).
-- A persona and a task (e.g., *Travel Planner* planning *4-day trip for college friends*).
+**Input:**  
+- A list of travel guide PDFs  
+- A persona (e.g. *Travel Planner*)  
+- A job to be done (e.g. *Plan a 4-day trip for 10 college friends*)
 
-The goal was to:
-- Identify and rank the most relevant sections.
-- Deduplicate content intelligently.
-- Generate high-quality summaries.
-- Return a clean, JSON-formatted output.
+**Goal:**  
+- Extract meaningful sections  
+- Rank them by relevance  
+- Summarize intelligently  
+- Return clean, structured output in JSON format
 
 ---
 
-## 🗂 Project Structure
+## 🧰 Tech Stack
 
+- **Python 3.10**  
+- `sentence-transformers` for semantic ranking  
+- `transformers` for summarization (DistilBART)  
+- `PyMuPDF (fitz)` for PDF reading  
+- JSON for structured input/output  
+- Clean modular design using virtual environments
+
+---
+
+## ⚙️ Setup Instructions
+
+### ✅ Prerequisite: Python 3.10
+
+Make sure you're using **Python 3.10**. You can check with:
+
+```bash
+python --version
+````
+
+> If you have multiple versions installed, use `python3.10` explicitly.
+
+---
+
+### 🧪 Step 1: Set up a Virtual Environment (Recommended)
+
+```bash
+# Navigate to your project directory
+cd 1b
+
+# Create a virtual environment named 'venv'
+python -m venv venv
+
+# Activate the environment
+# On Windows:
+venv\Scripts\activate
+# On macOS/Linux:
+source venv/bin/activate
 ```
 
-1b/
-├── input/
-│   ├── \*.pdf                  # Input travel guides
-│   └── persona\_job.json       # Contains persona & job details
-├── output/
-│   └── result.json            # Final output with ranked summaries
-├── extract\_text.py            # Extracts text from PDFs
-├── rank\_relevance.py          # Embeds, scores & ranks sections
-├── main.py                    # Orchestrates everything
-├── requirements.txt           # Dependencies
-└── README.md                  # You're here
+---
 
-````
+### 📦 Step 2: Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
 
 ---
 
-## 🚀 How to Run
+### 📁 Step 3: Prepare Inputs
 
-### 1. Install dependencies
-```bash
-pip install -r requirements.txt
-````
+Ensure your folder looks like this:
 
-### 2. Make sure your PDFs and `persona_job.json` are inside the `input/` folder.
+```
+1b/
+├── input/
+│   ├── *.pdf                  # All input travel guide PDFs
+│   └── persona_job.json       # Contains persona & job-to-be-done
+```
 
-### 3. Run the program
+---
+
+### ▶️ Step 4: Run the Project
 
 ```bash
 python main.py
 ```
 
-### 4. Check output in:
+---
+
+### 📤 Step 5: View Output
+
+Your output will be generated at:
 
 ```
 output/result.json
@@ -65,36 +103,37 @@ output/result.json
 
 ---
 
-## 📌 Output Example
+## ✨ Sample Output Structure
 
 ```json
 {
-  "extracted_sections": [
-    {
-      "document": "South of France - Cities.pdf",
-      "section_title": "Travel Tips",
-      "importance_score": 0.52,
-      "summary": "Key tips for making the most of your trip to the South of France..."
-    },
-    ...
-  ]
+  "metadata": {
+    "persona": "Travel Planner",
+    "job_to_be_done": "Plan a trip of 4 days...",
+    "processing_timestamp": "2025-07-28T13:01:22..."
+  },
+  "extracted_sections": [ ... ],
+  "subsection_analysis": [ ... ]
 }
 ```
 
 ---
 
-## 🤖 Under the Hood
+## 🤖 Key Features
 
-* Uses **MiniLM** (`all-MiniLM-L6-v2`) from SentenceTransformers for semantic similarity.
-* Summarization powered by **DistilBART** (`sshleifer/distilbart-cnn-12-6`) for speed and conciseness.
-* Cleans, deduplicates, and ranks content using cosine similarity.
+* Smart semantic matching using `all-MiniLM-L6-v2`
+* Lightweight, fast summarization using `distilbart-cnn-12-6`
+* Handles deduplication and prioritization
+* Clean separation of logic (extraction, ranking, summarization)
 
 ---
 
 
 ## 📝 License
 
-This repository is intended for educational/demo purposes for the Adobe Hackathon. Please do not use it for commercial applications without permission.
+This code is meant for demo and learning purposes as part of Adobe Hackathon.
+Feel free to fork or reference with credits.
+
 
 ---
 
