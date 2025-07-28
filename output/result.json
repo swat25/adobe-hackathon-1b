@@ -1,0 +1,85 @@
+{
+  "metadata": {
+    "input_documents": [
+      "South of France - Cities.pdf",
+      "South of France - Cuisine.pdf",
+      "South of France - History.pdf",
+      "South of France - Restaurants and Hotels.pdf",
+      "South of France - Things to Do.pdf",
+      "South of France - Tips and Tricks.pdf",
+      "South of France - Traditions and Culture.pdf"
+    ],
+    "persona": "Travel Planner",
+    "job_to_be_done": "Plan a trip of 4 days for a group of 10 college friends.",
+    "processing_timestamp": "2025-07-28T13:01:22.921842"
+  },
+  "extracted_sections": [
+    {
+      "document": "South of France - Tips and Tricks.pdf",
+      "page_number": 1,
+      "section_title": "kids, or in a group, this guide will help you make the most of your trip.",
+      "importance_score": 0.5472185015678406,
+      "importance_rank": 1,
+      "summary": " This guide will help you make the most of your trip to South of France . Kids, or in a group, can use this guide to make the best of their trip ."
+    },
+    {
+      "document": "South of France - Cities.pdf",
+      "page_number": 2,
+      "section_title": "Travel Tips",
+      "importance_score": 0.5245410203933716,
+      "importance_rank": 2,
+      "summary": "Travel Tips"
+    },
+    {
+      "document": "South of France - Restaurants and Hotels.pdf",
+      "page_number": 8,
+      "section_title": "a good option for travelers on a budget.",
+      "importance_score": 0.5202789902687073,
+      "importance_rank": 3,
+      "summary": " a good option for travelers on a budget. a good way to spend your money on a vacation. a great way to get on a good day of travel ."
+    },
+    {
+      "document": "South of France - Restaurants and Hotels.pdf",
+      "page_number": 8,
+      "section_title": "make it a great choice for budget-conscious travelers.",
+      "importance_score": 0.5173248648643494,
+      "importance_rank": 6,
+      "summary": " Make it a great choice for budget-conscious travelers . Make it easy to buy a small amount of food and drink at home ."
+    },
+    {
+      "document": "South of France - History.pdf",
+      "page_number": 1,
+      "section_title": "points of interest to help you plan an enriching and unforgettable trip.",
+      "importance_score": 0.4987224340438843,
+      "importance_rank": 8,
+      "summary": " points of interest to help you plan an enriching and unforgettable trip . Points of interest will be added to the itinerary to help guide you to the best of your trip ."
+    }
+  ],
+  "subsection_analysis": [
+    {
+      "document": "South of France - Tips and Tricks.pdf",
+      "refined_text": " This guide will help you make the most of your trip to South of France . Kids, or in a group, can use this guide to make the best of their trip .",
+      "page_number": 1
+    },
+    {
+      "document": "South of France - Cities.pdf",
+      "refined_text": "Travel Tips",
+      "page_number": 2
+    },
+    {
+      "document": "South of France - Restaurants and Hotels.pdf",
+      "refined_text": " a good option for travelers on a budget. a good way to spend your money on a vacation. a great way to get on a good day of travel .",
+      "page_number": 8
+    },
+    {
+      "document": "South of France - Restaurants and Hotels.pdf",
+      "refined_text": " Make it a great choice for budget-conscious travelers . Make it easy to buy a small amount of food and drink at home .",
+      "page_number": 8
+    },
+    {
+      "document": "South of France - History.pdf",
+      "refined_text": " points of interest to help you plan an enriching and unforgettable trip . Points of interest will be added to the itinerary to help guide you to the best of your trip .",
+      "page_number": 1
+    }
+  ]
+}
