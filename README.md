@@ -1,50 +1,82 @@
-# Adobe Hackathon 2025 – Round 1B  
-### ✈️ Travel Planner: Connecting the Dots
+# 🧠 Persona-Aware PDF Summarizer  
+### Adobe India Hackathon 2025 – Round 1B
 
-This repository is the submission for **Round 1B** of the Adobe India Hackathon 2025.  
-It implements an intelligent **travel assistant** that processes PDF guides and generates personalized, ranked summaries for a given persona and task.
+This project is a submission for **Round 1B** of the Adobe India Hackathon 2025.
 
----
+It implements a smart document understanding system that takes in:
+- a **persona** (e.g., Travel Planner),
+- a **task or job to be done** (e.g., Plan a 4-day trip),
+- and multiple **PDF documents** (e.g., travel guides, restaurant info, cultural tips)
 
-## 🧠 Problem Statement
-
-**Input:**  
-- A list of travel guide PDFs  
-- A persona (e.g. *Travel Planner*)  
-- A job to be done (e.g. *Plan a 4-day trip for 10 college friends*)
-
-**Goal:**  
-- Extract meaningful sections  
-- Rank them by relevance  
-- Summarize intelligently  
-- Return clean, structured output in JSON format
+...and returns a clean, ranked, and summarized JSON of the most relevant content.
 
 ---
 
-## 🧰 Tech Stack
+## 🚀 What This Project Does
 
-- **Python 3.10**  
-- `sentence-transformers` for semantic ranking  
-- `transformers` for summarization (DistilBART)  
-- `PyMuPDF (fitz)` for PDF reading  
-- JSON for structured input/output  
-- Clean modular design using virtual environments
+Given a real-world problem framed as:
+- a **persona**
+- a **job to be done**
+- a folder of **PDFs**
+
+➡️ It performs the following steps:
+
+1. **Extracts text** from each PDF page  
+2. **Ranks each section** based on how relevant it is to the given persona + task  
+3. **Deduplicates** similar titles  
+4. **Summarizes** top-ranked content using a fast, lightweight transformer model  
+5. **Outputs** a structured JSON with extracted insights
 
 ---
 
-## ⚙️ Setup Instructions
+## 📁 Folder Structure
 
-### ✅ Prerequisite: Python 3.10
+```
 
-Make sure you're using **Python 3.10**. You can check with:
+1b/
+├── input/
+│   ├── \*.pdf                  # Input documents
+│   └── persona\_job.json       # Contains persona and job/task
+├── output/
+│   └── result.json            # Final output saved here
+├── main.py                    # Main runner script
+├── extract\_text.py            # PDF text extractor
+├── rank\_relevance.py          # Ranking engine (using sentence-transformers)
+├── requirements.txt
+└── README.md
 
-```bash
-python --version
 ````
 
-> If you have multiple versions installed, use `python3.10` explicitly.
+---
+
+## 🧪 Example Use Case – Travel Planner
+
+This project supports multiple test cases. Here's an example:
+
+**Persona**: Travel Planner  
+**Task**: Plan a 4-day trip for 10 college friends  
+**Input PDFs**: Travel tips, hotel guides, cities, things to do in the South of France  
+**Output**: Top 5 most relevant sections with summaries in `output/result.json`
+
+You can inspect this example in the `input/` folder provided.
 
 ---
+
+## 🐍 Python Version
+
+This project is tested on **Python 3.10**.  
+Please make sure you're using Python 3.10+ for compatibility with packages like `sentence-transformers` and `transformers`.
+
+---
+
+## 💻 Local Setup
+
+### Clone the repo
+
+```bash
+git clone https://github.com/swat25/adobe-hackathon-1b.git
+cd adobe-hackathon-1b
+````
 
 ### 🧪 Step 1: Set up a Virtual Environment (Recommended)
 
@@ -119,21 +151,29 @@ output/result.json
 
 ---
 
-## 🤖 Key Features
 
-* Smart semantic matching using `all-MiniLM-L6-v2`
-* Lightweight, fast summarization using `distilbart-cnn-12-6`
-* Handles deduplication and prioritization
-* Clean separation of logic (extraction, ranking, summarization)
+## 🛠 Tech Stack
+
+* **Python 3.10**
+* `PyMuPDF (fitz)` – PDF parsing
+* `sentence-transformers` – Semantic ranking (`all-MiniLM-L6-v2`)
+* `transformers` – Summarization model (`sshleifer/distilbart-cnn-12-6`)
+* `json` – Structured input/output
+* Clean modular design using virtual environments
+  
+---
+
+## 📌 Notes
+
+* Only the top 5 deduplicated sections are included in the final output (based on ranking).
+* The summarizer is lightweight and fast — ideal for hackathon use.
 
 ---
 
 
-## 📝 License
-
-This code is meant for demo and learning purposes as part of Adobe Hackathon.
-Feel free to fork or reference with credits.
 
 
----
+
+
+
 
