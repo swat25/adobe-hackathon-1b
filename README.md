@@ -1,140 +1,108 @@
-# Persona-Aware PDF Summarizer  
-### Adobe India Hackathon 2025 – Round 1B
+# Persona-Aware PDF Summarizer
 
-This project is a submission for **Round 1B** of the Adobe India Hackathon 2025.
+**Adobe India Hackathon 2025 – Round 1B Submission**
 
-It implements a smart document understanding system that takes in:
-- a **persona** (e.g., Travel Planner),
-- a **task or job to be done** (e.g., Plan a 4-day trip),
-- and multiple **PDF documents** (e.g., travel guides, restaurant info, cultural tips)
+This project is a solution to the Round 1B problem statement of the Adobe India Hackathon 2025.
 
-...and returns a clean, ranked, and summarized JSON of the most relevant content.
+The goal is to create a document intelligence system that reads a set of PDF files and intelligently selects and summarizes the most relevant content based on:
 
----
+* A given **persona** (e.g., Travel Planner)
+* A specific **task** or **job to be done** (e.g., Plan a trip)
+* A set of **input PDFs**
 
-## What This Project Does
-
-Given a real-world problem framed as:
-- a **persona**
-- a **job to be done**
-- a folder of **PDFs**
-
- It performs the following steps:
-
-1. **Extracts text** from each PDF page  
-2. **Ranks each section** based on how relevant it is to the given persona + task  
-3. **Deduplicates** similar titles  
-4. **Summarizes** top-ranked content using a fast, lightweight transformer model  
-5. **Outputs** a structured JSON with extracted insights
+The output is a clean, ranked, and summarized JSON response that surfaces only the most relevant insights.
 
 ---
 
 ## Folder Structure
 
 ```
-
 1b/
 ├── input/
-│   ├── \*.pdf                  # Input documents
-│   └── persona\_job.json       # Contains persona and job/task
+│   ├── *.pdf                  # Input documents
+│   └── persona_job.json       # Contains persona and task
 ├── output/
 │   └── result.json            # Final output saved here
 ├── main.py                    # Main runner script
-├── extract\_text.py            # PDF text extractor
-├── rank\_relevance.py          # Ranking engine (using sentence-transformers)
+├── extract_text.py            # PDF text extractor
+├── rank_relevance.py          # Ranking engine (using sentence-transformers)
 ├── requirements.txt
 └── README.md
-
-````
-
----
-
-## Example Use Case – Travel Planner
-
-This project supports multiple test cases. Here's an example:
-
-**Persona**: Travel Planner  
-**Task**: Plan a 4-day trip for 10 college friends  
-**Input PDFs**: Travel tips, hotel guides, cities, things to do in the South of France  
-**Output**: Top 5 most relevant sections with summaries in `output/result.json`
-
-You can inspect this example in the `input/` folder provided.
+```
 
 ---
 
-## Python Version
+##  Python Version
 
-This project is tested on **Python 3.10**.  
-Please make sure you're using Python 3.10+ for compatibility with packages like `sentence-transformers` and `transformers`.
+This project is tested with **Python 3.10**.
+Please ensure you're using Python 3.10+ to avoid compatibility issues with
 
----
 
-## Local Setup
+## How to Run
 
-### Clone the repo
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/swat25/adobe-hackathon-1b.git
 cd adobe-hackathon-1b
-````
+```
 
-### Step 1: Set up a Virtual Environment (Recommended)
+### 2. Use Python 3.10 and Create a Virtual Environment
 
-#### Windows (with Python 3.10 specifically):
+Make sure Python 3.10 is installed.
+
+#### On Windows:
 
 ```bash
 py -3.10 -m venv venv
 venv\Scripts\activate
 ```
 
-#### Mac/Linux:
+#### On macOS/Linux:
 
 ```bash
 python3.10 -m venv venv
 source venv/bin/activate
 ```
 
-> Make sure Python 3.10 is installed on your system and added to PATH.
-
-# Activate the environment
-# On Windows:
-venv\Scripts\activate
-# On macOS/Linux:
-source venv/bin/activate
-```
-
-### Step 2: Install Dependencies
+### 3. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
+### 4. Place Input Files
 
-### Step 3: Prepare Inputs
-
-Ensure your folder looks like this:
+Create or ensure this structure:
 
 ```
-1b/
-├── input/
-│   ├── *.pdf                  # All input travel guide PDFs
-│   └── persona_job.json       # Contains persona & job-to-be-done
+input/
+├── *.pdf                  # Input documents
+└── persona_job.json       # JSON file with persona and job
 ```
 
----
+Example `persona_job.json` format:
 
-### Step 4: Run the Project
+```json
+{
+  "persona": { "role": "Travel Planner" },
+  "job_to_be_done": { "task": "Plan a 4-day trip for a group of 10 college friends." },
+  "documents": [
+    { "filename": "Sample1.pdf", "title": "Sample1" },
+    { "filename": "Sample2.pdf", "title": "Sample2" }
+  ]
+}
+```
+
+### 5. Run the Project
 
 ```bash
 python main.py
 ```
 
----
+### 6. View the Output
 
-### Step 5: View Output
-
-Your output will be generated at:
+Check the file:
 
 ```
 output/result.json
@@ -142,45 +110,43 @@ output/result.json
 
 ---
 
-## Sample Output Structure
+## Project Overview
 
-```json
-{
-  "metadata": {
-    "persona": "Travel Planner",
-    "job_to_be_done": "Plan a trip of 4 days...",
-    "processing_timestamp": "2025-07-28T13:01:22..."
-  },
-  "extracted_sections": [ ... ],
-  "subsection_analysis": [ ... ]
-}
-```
+The pipeline performs the following steps:
+
+1. **Extracts** page-level text from all PDF files.
+2. **Ranks** each section’s relevance using semantic similarity (with sentence-transformers).
+3. **Deduplicates** similar section titles to avoid repetition.
+4. **Summarizes** the top 5 sections using a transformer-based summarizer.
+5. **Generates** a structured JSON output with metadata, ranked results, and summaries.
 
 ---
 
+## Example Use Case
 
-## Tech Stack
+**Persona**: Travel Planner
+**Task**: Plan a 4-day trip for a group of 10 college friends
+**Input PDFs**: Travel guides, food/culture/history docs about the South of France
+**Output**: A JSON file with the 5 most relevant and summarized section titles and pages
 
-* **Python 3.10**
-* `PyMuPDF (fitz)` – PDF parsing
-* `sentence-transformers` – Semantic ranking (`all-MiniLM-L6-v2`)
-* `transformers` – Summarization model (`sshleifer/distilbart-cnn-12-6`)
-* `json` – Structured input/output
-* Clean modular design using virtual environments
-  
+---
+
+## Technologies Used
+
+* Python 3.10
+* [PyMuPDF](https://pymupdf.readthedocs.io/en/latest/) (via `fitz`) for PDF text extraction
+* [`sentence-transformers`](https://www.sbert.net/) for relevance ranking (`all-MiniLM-L6-v2`)
+* [`transformers`](https://huggingface.co/transformers/) for summarization (`sshleifer/distilbart-cnn-12-6`)
+* JSON for structured input/output
+
 ---
 
 ## Notes
 
-* Only the top 5 deduplicated sections are included in the final output (based on ranking).
-* The summarizer is lightweight and fast — ideal for hackathon use.
+* Only top 5 deduplicated, ranked sections are returned.
+* The summarizer automatically avoids hallucinated content (e.g., replacing wrong words like “Mexico”).
+* Output format is suitable for downstream automation or frontend use.
 
 ---
-
-
-
-
-
-
 
 
