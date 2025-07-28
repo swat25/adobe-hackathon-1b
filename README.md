@@ -1,4 +1,4 @@
-# 🧠 Persona-Aware PDF Summarizer  
+# Persona-Aware PDF Summarizer  
 ### Adobe India Hackathon 2025 – Round 1B
 
 This project is a submission for **Round 1B** of the Adobe India Hackathon 2025.
@@ -12,14 +12,14 @@ It implements a smart document understanding system that takes in:
 
 ---
 
-## 🚀 What This Project Does
+## What This Project Does
 
 Given a real-world problem framed as:
 - a **persona**
 - a **job to be done**
 - a folder of **PDFs**
 
-➡️ It performs the following steps:
+ It performs the following steps:
 
 1. **Extracts text** from each PDF page  
 2. **Ranks each section** based on how relevant it is to the given persona + task  
@@ -29,7 +29,7 @@ Given a real-world problem framed as:
 
 ---
 
-## 📁 Folder Structure
+## Folder Structure
 
 ```
 
@@ -49,7 +49,7 @@ Given a real-world problem framed as:
 
 ---
 
-## 🧪 Example Use Case – Travel Planner
+## Example Use Case – Travel Planner
 
 This project supports multiple test cases. Here's an example:
 
@@ -62,14 +62,14 @@ You can inspect this example in the `input/` folder provided.
 
 ---
 
-## 🐍 Python Version
+## Python Version
 
 This project is tested on **Python 3.10**.  
 Please make sure you're using Python 3.10+ for compatibility with packages like `sentence-transformers` and `transformers`.
 
 ---
 
-## 💻 Local Setup
+## Local Setup
 
 ### Clone the repo
 
@@ -78,14 +78,23 @@ git clone https://github.com/swat25/adobe-hackathon-1b.git
 cd adobe-hackathon-1b
 ````
 
-### 🧪 Step 1: Set up a Virtual Environment (Recommended)
+### Step 1: Set up a Virtual Environment (Recommended)
+
+#### Windows (with Python 3.10 specifically):
 
 ```bash
-# Navigate to your project directory
-cd 1b
+py -3.10 -m venv venv
+venv\Scripts\activate
+```
 
-# Create a virtual environment named 'venv'
-python -m venv venv
+#### Mac/Linux:
+
+```bash
+python3.10 -m venv venv
+source venv/bin/activate
+```
+
+> Make sure Python 3.10 is installed on your system and added to PATH.
 
 # Activate the environment
 # On Windows:
@@ -94,9 +103,7 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
----
-
-### 📦 Step 2: Install Dependencies
+### Step 2: Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -104,7 +111,7 @@ pip install -r requirements.txt
 
 ---
 
-### 📁 Step 3: Prepare Inputs
+### Step 3: Prepare Inputs
 
 Ensure your folder looks like this:
 
@@ -117,7 +124,7 @@ Ensure your folder looks like this:
 
 ---
 
-### ▶️ Step 4: Run the Project
+### Step 4: Run the Project
 
 ```bash
 python main.py
@@ -125,7 +132,7 @@ python main.py
 
 ---
 
-### 📤 Step 5: View Output
+### Step 5: View Output
 
 Your output will be generated at:
 
@@ -135,7 +142,7 @@ output/result.json
 
 ---
 
-## ✨ Sample Output Structure
+## Sample Output Structure
 
 ```json
 {
@@ -152,7 +159,7 @@ output/result.json
 ---
 
 
-## 🛠 Tech Stack
+## Tech Stack
 
 * **Python 3.10**
 * `PyMuPDF (fitz)` – PDF parsing
@@ -163,7 +170,7 @@ output/result.json
   
 ---
 
-## 📌 Notes
+## Notes
 
 * Only the top 5 deduplicated sections are included in the final output (based on ranking).
 * The summarizer is lightweight and fast — ideal for hackathon use.
